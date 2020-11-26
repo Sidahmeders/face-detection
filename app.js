@@ -1,7 +1,12 @@
 
 const video = document.getElementById('video')
 
-Promise.all([])
+Promise.all([
+    faceapi.nets.tinyFaceDetectr.loadFromUri('/models'),
+    faceapi.nets.faceLandmark68Net.loadFromUri('/models'),
+    faceapi.nets.faceRecognitionNet.loadFromUri('/models'),
+    faceapi.nets.faceExpressNet.loadFromUri('/models'),
+])
 
 function startVideo() {
     navigator.getUserMedia(
@@ -12,4 +17,4 @@ function startVideo() {
 }
 
 
-startVideo()
+video.addEventListener('play', () => console.log('cool video'))
