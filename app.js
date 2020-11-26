@@ -9,6 +9,9 @@ Promise.all([
 ]).then(startVideo)
 
 function startVideo() {
+    const canvas = faceapi.createCanvasFromMedia(video)
+    document.body.append(canvas)
+
     navigator.getUserMedia(
         {video: {}},
         stream => video.srcObject = stream,
