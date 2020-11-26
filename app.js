@@ -9,9 +9,6 @@ Promise.all([
 ]).then(startVideo)
 
 function startVideo() {
-    const canvas = faceapi.createCanvasFromMedia(video)
-    document.body.append(canvas)
-
     navigator.getUserMedia(
         {video: {}},
         stream => video.srcObject = stream,
@@ -21,7 +18,10 @@ function startVideo() {
 
 
 video.addEventListener('play', () => {
-    console.log('cool video')
+    const canvas = faceapi.createCanvasFromMedia(video)
+    document.body.append(canvas)
+
+    const displaySize = { width: video.width, height: video.height }
 
     setInterval(async () => {
         const detection = await faceapi.detectAllFaces(
